@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FrontaTCG.Cards;
+using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -24,7 +27,9 @@ public class FrontaTCGDbContext :
     ITenantManagementDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-
+    public DbSet<CardAbility> CardAbilities { get; set; }
+    public DbSet<Card> Cards { get; set; }
+    public DbSet<UnitCard> UnitCards { get; set; }
     #region Entities from the modules
 
     /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
@@ -56,7 +61,7 @@ public class FrontaTCGDbContext :
     public FrontaTCGDbContext(DbContextOptions<FrontaTCGDbContext> options)
         : base(options)
     {
-
+        
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -75,6 +80,25 @@ public class FrontaTCGDbContext :
         builder.ConfigureTenantManagement();
 
         /* Configure your own tables/entities inside here */
+
+        builder.Entity<CardAbility>(b =>
+        {
+            b.ToTable(FrontaTCGConsts.DbTablePrefix + "CardAbilities", FrontaTCGConsts.DbSchema);
+            b.ConfigureByConvention();
+        }  );
+        builder.Entity<Card>(b =>
+        {
+            b.ToTable(FrontaTCGConsts.DbTablePrefix + "Cards", FrontaTCGConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<UnitCard>(b =>
+        {
+            b.ToTable(FrontaTCGConsts.DbTablePrefix + "UnitCards", FrontaTCGConsts.DbSchema);
+            b.ConfigureByConvention();
+         
+        });
+
+
 
         //builder.Entity<YourEntity>(b =>
         //{
