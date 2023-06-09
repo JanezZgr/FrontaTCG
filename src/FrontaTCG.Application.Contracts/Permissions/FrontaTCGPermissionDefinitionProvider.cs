@@ -11,6 +11,7 @@ public class FrontaTCGPermissionDefinitionProvider : PermissionDefinitionProvide
         var myGroup = context.AddGroup(FrontaTCGPermissions.GroupName);
         //Define your own permissions here. Example:
         //myGroup.AddPermission(FrontaTCGPermissions.MyPermission1, L("Permission:MyPermission1"));
+        myGroup.AddPermission("EditCards", L("EditCards"));
     }
 
     private static LocalizableString L(string name)

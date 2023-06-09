@@ -1,0 +1,75 @@
+﻿@page
+@model FrontaTCG.Web.Pages.Cards.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Card</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Card.CardName" class="control-label"></label>
+                <input asp-for="Card.CardName" class="form-control" />
+                <span asp-validation-for="Card.CardName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.CostMaterial" class="control-label"></label>
+                <input asp-for="Card.CostMaterial" class="form-control" />
+                <span asp-validation-for="Card.CostMaterial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.CostManpower" class="control-label"></label>
+                <input asp-for="Card.CostManpower" class="form-control" />
+                <span asp-validation-for="Card.CostManpower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.LastModificationTime" class="control-label"></label>
+                <input asp-for="Card.LastModificationTime" class="form-control" />
+                <span asp-validation-for="Card.LastModificationTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.LastModifierId" class="control-label"></label>
+                <input asp-for="Card.LastModifierId" class="form-control" />
+                <span asp-validation-for="Card.LastModifierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.CreationTime" class="control-label"></label>
+                <input asp-for="Card.CreationTime" class="form-control" />
+                <span asp-validation-for="Card.CreationTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.CreatorId" class="control-label"></label>
+                <input asp-for="Card.CreatorId" class="form-control" />
+                <span asp-validation-for="Card.CreatorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.ExtraProperties" class="control-label"></label>
+                <input asp-for="Card.ExtraProperties" class="form-control" />
+                <span asp-validation-for="Card.ExtraProperties" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.ConcurrencyStamp" class="control-label"></label>
+                <input asp-for="Card.ConcurrencyStamp" class="form-control" />
+                <span asp-validation-for="Card.ConcurrencyStamp" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Card.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
